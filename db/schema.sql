@@ -81,14 +81,14 @@ CREATE TABLE IF NOT EXISTS flight_info (
     "departure_hour" INT,
     "departure_minute" INT,
     "departure_second" INT,
-    "departure_timezone" NUMERIC(2, 2),
+    "departure_timezone" NUMERIC(4, 2),
     "arrival_year" INT,
     "arrival_month" INT,
     "arrival_day" INT,
     "arrival_hour" INT,
     "arrival_minute" INT,
     "arrival_second" INT,
-    "arrival_timezone" NUMERIC(2, 2),
+    "arrival_timezone" NUMERIC(4, 2),
     "flight_id" INT primary key
 );
 
