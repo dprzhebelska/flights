@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS airports (
     "DST" TEXT,
     "Tz_database_time_zone" TEXT,
     "Type" TEXT,
-    "airport_id" INT primary key,
+    "airport_id" INT primary key
 );
 
 CREATE TABLE IF NOT EXISTS booking_info (
@@ -64,5 +64,48 @@ CREATE TABLE IF NOT EXISTS booking_info (
     "booking_id" INT primary key,
     "search_year" INT,
     "search_month" INT,
-    "search_day" INT,
+    "search_day" INT
+);
+
+CREATE TABLE IF NOT EXISTS flight_info (
+    "elapsed_days" INT,
+    "departure_time_unix" INT,
+    "arrival_time_unix" INT,
+    "duration_in_seconds" INT,
+    "total_distance" INT,
+    "duration_hours" INT,
+    "duration_minutes" INT,
+    "departure_year" INT,
+    "departure_month" INT,
+    "departure_day" INT,
+    "departure_hour" INT,
+    "departure_minute" INT,
+    "departure_second" INT,
+    "departure_timezone" NUMERIC(2, 2),
+    "arrival_year" INT,
+    "arrival_month" INT,
+    "arrival_day" INT,
+    "arrival_hour" INT,
+    "arrival_minute" INT,
+    "arrival_second" INT,
+    "arrival_timezone" NUMERIC(2, 2),
+    "flight_id" INT primary key
+);
+
+CREATE TABLE IF NOT EXISTS fact_table (
+    "totalFare" NUMERIC(7, 2),
+    "arrival_airport_id" INT,
+    "departure_airport_id" INT,
+    "airline_id" INT, 
+    "airplane_id" INT,
+    "book_info_id" INT,
+    "flight_info_id" INT,
+    CONSTRAINT fk_arrival_airport FOREIGN KEY (arrival_airport_id) REFERENCES airports(airport_id),
+    CONSTRAINT fk_departure_airport FOREIGN KEY (departure_airport_id) REFERENCES airports(airport_id),
+    CONSTRAINT fk_airline FOREIGN KEY (airline_id) REFERENCES airlines(airline_id),
+    CONSTRAINT fk_airplane FOREIGN KEY (airplane_id) REFERENCES airplanes(airplane_id),
+    CONSTRAINT fk_book_info FOREIGN KEY (book_info_id) REFERENCES booking_info(booking_id),
+    CONSTRAINT fk_flight_info FOREIGN KEY (flight_info_id) REFERENCES flight_info(flight_id),
+    PRIMARY KEY(arrival_airport_id, departure_airport_id, airline_id, airplane_id, book_info_id, flight_info_id)
+
 );
