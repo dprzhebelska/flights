@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS airlines (
     "IATA" TEXT,
     "ICAO" TEXT,
     "Callsign" TEXT,
-    "Is_active" TEXT,
+    "Is_active" BOOLEAN,
     "Annual_Revenue" NUMERIC(3, 1),
     "Number_of_Employees" INT,
     "Number_of_Planes" INT,
@@ -45,12 +45,24 @@ CREATE TABLE IF NOT EXISTS airports (
     "Country" TEXT,
     "IATA" TEXT,
     "ICAO" TEXT,
-    "Latitude" FLOAT,
-    "Longitude" FLOAT,
+    "Latitude" NUMERIC(11, 9),
+    "Longitude" NUMERIC(12, 9),
     "Altitude" INT,
-    "Timezone" FLOAT,
+    "Timezone" NUMERIC(4, 2),
     "DST" TEXT,
-    "Tz database time zone" TEXT,
+    "Tz_database_time_zone" TEXT,
     "Type" TEXT,
-    "airport_id" INT primary key
+    "airport_id" INT primary key,
+);
+
+CREATE TABLE IF NOT EXISTS booking_info (
+    "fareBasisCode" TEXT,
+    "isBasicEconomy" BOOLEAN,
+    "isRefundable" BOOLEAN,
+    "isNonStop" BOOLEAN,
+    "seatsRemaining" INT,
+    "booking_id" INT primary key,
+    "search_year" INT,
+    "search_month" INT,
+    "search_day" INT,
 );
